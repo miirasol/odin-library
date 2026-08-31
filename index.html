@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>js-test</title>
+	</head>
+	<body>
+		<div id="app">
+			<form id="new-book-form">
+				<input type="text" id="title" placeholder="Title" required />
+				<input type="text" id="author" placeholder="Author" required />
+				<input type="number" id="pages" placeholder="Pages" required />
+
+				<label>
+					<input type="checkbox" id="has-been-read" /> Have you read it?
+				</label>
+
+				<button type="submit">Add Book</button>
+			</form>
+			<div id="library-container"></div>
+		</div>
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>
