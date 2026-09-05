@@ -15,8 +15,40 @@ class Book {
 		this.#hasBeenRead = hasBeenRead;
 	}
 
-	#toggleRead() {
+	toggleRead() {
 		this.#hasBeenRead = !this.#hasBeenRead;
+	}
+
+	get title() {
+		return this.#title;
+	}
+
+	set title(value) {
+		this.#title = value;
+	}
+
+	get author() {
+		return this.#author;
+	}
+
+	set author(value) {
+		this.#author = value;
+	}
+
+	get pages() {
+		return this.#pages;
+	}
+
+	set pages(value) {
+		this.#pages = value;
+	}
+
+	get hasBeenRead() {
+		return this.#hasBeenRead;
+	}
+
+	get id() {
+		return this.#id;
 	}
 }
 
