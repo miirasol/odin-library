@@ -1,4 +1,12 @@
-let myLibrary = [];
+class Library {
+	static library = [];
+
+	addBook(title, author, pages, hasBeenRead) {
+		const book = new Book(title, author, pages, hasBeenRead);
+
+		Library.library.push(book);
+	}
+}
 
 class Book {
 	#id;
@@ -52,18 +60,12 @@ class Book {
 	}
 }
 
-function addBookToLibrary(title, author, pages, hasBeenRead) {
-	const book = new Book(title, author, pages, hasBeenRead);
-
-	myLibrary.push(book);
-}
-
 function displayBooks() {
 	const container = document.querySelector("#library-container");
 
 	container.innerHTML = "";
 
-	myLibrary.forEach((book) => {
+	Library.library.forEach((book) => {
 		const bookCard = document.createElement("div");
 		bookCard.classList.add("book-card");
 
@@ -86,7 +88,7 @@ libraryContainer.addEventListener("click", (e) => {
 	if (e.target.classList.contains("delete-button")) {
 		const targetId = e.target.dataset.id;
 
-		myLibrary = myLibrary.filter((book) => book.id !== targetId);
+		Library.library = Library.library.filter((book) => book.id !== targetId);
 
 		displayBooks();
 	}
@@ -94,7 +96,7 @@ libraryContainer.addEventListener("click", (e) => {
 	if (e.target.classList.contains("toggle-read-button")) {
 		const targetId = e.target.dataset.id;
 
-		const targetBook = myLibrary.find((book) => book.id === targetId);
+		const targetBook = Library.library.find((book) => book.id === targetId);
 
 		targetBook.toggleRead();
 
@@ -103,6 +105,7 @@ libraryContainer.addEventListener("click", (e) => {
 });
 
 const form = document.querySelector("#new-book-form");
+const library = new Library();
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 
@@ -111,7 +114,7 @@ form.addEventListener("submit", (e) => {
 	const pagesValue = document.querySelector("#pages").value;
 	const isRead = document.querySelector("#has-been-read").checked;
 
-	addBookToLibrary(titleValue, authorValue, pagesValue, isRead);
+	library.addBook(titleValue, authorValue, pagesValue, isRead);
 
 	displayBooks();
 	form.reset();
