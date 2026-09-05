@@ -1,15 +1,23 @@
 let myLibrary = [];
 
-Book.prototype.toggleRead = function () {
-	this.hasBeenRead = !this.hasBeenRead;
-};
+class Book {
+	#id;
+	#title;
+	#author;
+	#pages;
+	#hasBeenRead;
 
-function Book(title, author, pages, hasBeenRead) {
-	this.id = crypto.randomUUID();
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.hasBeenRead = hasBeenRead;
+	constructor(title, author, pages, hasBeenRead) {
+		this.#id = crypto.randomUUID();
+		this.#title = title;
+		this.#author = author;
+		this.#pages = pages;
+		this.#hasBeenRead = hasBeenRead;
+	}
+
+	#toggleRead() {
+		this.#hasBeenRead = !this.#hasBeenRead;
+	}
 }
 
 function addBookToLibrary(title, author, pages, hasBeenRead) {
@@ -30,12 +38,12 @@ function displayBooks() {
 		bookCard.dataset.id = book.id;
 
 		bookCard.innerHTML = `<h3>Title: ${book.title}</h3>
-      <p>Author: ${book.author}</p>
-      <p>Pages: ${book.pages}</p>
-      <p>Has Been Read: ${book.hasBeenRead ? "Yes" : "No"}</p>
-      <button class="toggle-read-button" data-id="${book.id}">Toggle Read Status</button>
-      <button class="delete-button" data-id="${book.id}">Delete</button>
-      `;
+    <p>Author: ${book.author}</p>
+    <p>Pages: ${book.pages}</p>
+    <p>Has Been Read: ${book.hasBeenRead ? "Yes" : "No"}</p>
+    <button class="toggle-read-button" data-id="${book.id}">Toggle Read Status</button>
+    <button class="delete-button" data-id="${book.id}">Delete</button>
+    `;
 
 		container.appendChild(bookCard);
 	});
