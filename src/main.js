@@ -1,7 +1,7 @@
 class Library {
 	static library = [];
 
-	addBook(title, author, pages, hasBeenRead) {
+	static addBook(title, author, pages, hasBeenRead) {
 		const book = new Book(title, author, pages, hasBeenRead);
 
 		Library.library.push(book);
@@ -105,7 +105,6 @@ libraryContainer.addEventListener("click", (e) => {
 });
 
 const form = document.querySelector("#new-book-form");
-const library = new Library();
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 
@@ -114,7 +113,7 @@ form.addEventListener("submit", (e) => {
 	const pagesValue = document.querySelector("#pages").value;
 	const isRead = document.querySelector("#has-been-read").checked;
 
-	library.addBook(titleValue, authorValue, pagesValue, isRead);
+	Library.addBook(titleValue, authorValue, pagesValue, isRead);
 
 	displayBooks();
 	form.reset();
